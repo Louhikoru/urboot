@@ -1743,11 +1743,11 @@ int main(void) {
 #if !DUAL && !(defined(__AVR_ERRATA_SKIP_JMP_CALL__) && __AVR_ERRATA_SKIP_JMP_CALL__ && \
   !FLASHin8k && !FLASHWRAPS)
   // Skip next instruction if EXTRF set (compiler doesn't know length of asm is one instruction)
-  asm volatile("sbrs %[ms], %[extrf]\n" :: [ms] "r"(mcusr), [extrf] "I"(EXTRF));
+  asm volatile("cpse %[ms], %[extrf]\n" :: [ms] "r"(mcusr), [extrf] "r"((uint8_t)_BV(EXTRF)));
   jmpToAppOpcode();
 #else
 
-  if(!(mcusr & _BV(EXTRF))) {
+  if(mcusr != _BV(EXTRF)) {
 #if DUAL                        // Check external SPI flash, then start the application
     if(mcusr & _BV(WDRF))       // Reset by watchdog? Check for dual boot from external flash
       dual_boot();
