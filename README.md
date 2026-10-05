@@ -72,7 +72,7 @@ Alternatively, the Dockerfile may be built and used to build binaries on other s
 When checking out the repository on Windows, configure Git to preserve the line endings and symbolic links:
 ```powershell
 git clone -c core.autocrlf=false -c core.symlinks=true https://github.com/stefanrueger/urboot.git
-docker run --platform linux/amd64 -v "${PWD}/src:/src" --rm -it $(docker build -q .) MCU=atmega328p AUTOBAUD=1 VBL=1 AUTOFRILLS=5..10 NAME=atmega328p_a
+docker run --platform linux/amd64 -v "${PWD}/src:/src" --rm -it $(docker build -q .) MCU=atmega2560 AUTOBAUD=1 RX=AtmelPE0 TX=AtmelPE1 BLINK=0 FRILLS=10 NAME=urboot_m2560_1s_autobaud_uart0_rxe0_txe1_no-led_ee_ce_hw
 ```
 More detailed information here: [`make` options](docs/makeoptions.md)
 
