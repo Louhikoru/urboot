@@ -43,6 +43,7 @@ bauderror
 *.idb
 *.pdb
 
+*.hex
 *.lst
 *.out
 
