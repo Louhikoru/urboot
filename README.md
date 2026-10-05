@@ -68,6 +68,12 @@ Alternatively, the Dockerfile may be built and used to build binaries on other s
  $ docker run --platform linux/amd64 -v "$(pwd)/src":/src --rm -it $(docker build -q .) \
    MCU=atmega328p AUTOBAUD=1 VBL=1 AUTOFRILLS=5..10 NAME=atmega328p_a
 ```
+
+When checking out the repository on Windows, configure Git to preserve the line endings and symbolic links:
+```powershell
+git clone -c core.autocrlf=false -c core.symlinks=true https://github.com/stefanrueger/urboot.git
+docker run --platform linux/amd64 -v "${PWD}/src:/src" --rm -it $(docker build -q .) MCU=atmega328p AUTOBAUD=1 VBL=1 AUTOFRILLS=5..10 NAME=atmega328p_a
+```
 More detailed information here: [`make` options](docs/makeoptions.md)
 
 <p id="pre-compiled"></p>
